@@ -55,23 +55,23 @@
                 </div>
             </div>
             <div class="input-field col s12 m12 l12">
-                <select>
-                  <option value="" disabled selected>Choose your option</option>
-                  <option value="1">Singer</option>
-                  <option value="2">Dancer</option>
-                  <option value="3">Musician</option>
+                <select id="icon_skill">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="1">Singer</option>
+                    <option value="2">Dancer</option>
+                    <option value="3">Musician</option>
                 </select>
                 <label>Select Your Skills</label>
-              </div>
-              <div class="input-field col s12 m12 l12">
+            </div>
+            <div class="input-field col s12 m12 l12">
                 <div id="test-slider">
                     <p class="range-field">
                         <label>Rate your expertise in these skills</label>
                         <input type="range" id="test5" min="0" max="100" />
-                      </p>
+                    </p>
                 </div>
-              </div>
-            
+            </div>
+
         </form>
         <div class="col s2 m2 l4"></div>
     </div>
@@ -80,14 +80,21 @@
         <div class="row">
             <div class="col l4 s4 m4"></div>
             <div class="col l4 s4 m4 center">
-                <button  data-target="modal1" class="btn-floating btn-large waves-effect waves-light modal-trigger"><i
-                            class="fas fa-arrow-right"></i></button>
+                <button id="submit" class="btn-floating btn-large waves-effect waves-light"><i
+                        class="fas fa-arrow-right"></i></button>
             </div>
-            <div class="col l4 s4 m4"></div>
+            <div class="col l4 s4 m4">
+                <p id="res"></p>
+                <p id="res1"></p>
+                <p id="res2"></p>
+                <p id="res3"></p>
+                <p id="res4"></p>
+                <p id="res5"></p>
+            </div>
         </div>
     </div>
 
-    <div id="modal1" class="modal">
+    <!-- <div id="modal1" class="modal">
         <div class="modal-content">
           <h4>Thanks !! for posting your crucial Information on our site </h4>
           <p>You will be updated as soon as any of the executive employers want to start their work journey with the very artist in you.</p>
@@ -96,18 +103,60 @@
           <a href="index.html" class="modal-close waves-effect waves-green btn-flat">Agree</a>
         </div>
       </div> 
+     -->
 
     <script type="text/javascript" src="script/cardAnimate.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script>
+    <script src="script/employee.js"></script>
+    <!--
+        <script>
 
-    var modalStarter=document.querySelectorAll('.modal');
-    M.Modal.init(modalStarter,{});
-        
-    const selection = document.querySelectorAll('select');
-    M.FormSelect.init(selection, {});
-    
-    </script>        
+
+        document.addEventListener('DOMContentLoaded', () => {
+            var modalStarter = document.querySelectorAll('.modal');
+            M.Modal.init(modalStarter, {});
+
+            const selection = document.querySelectorAll('select');
+            M.FormSelect.init(selection, {});
+
+            document.getElementById('submit').addEventListener('click', function () {
+                var name = document.getElementById('icon_prefix').value
+                document.getElementById('res').innerHTML = name
+                var phone = document.getElementById('icon_telephone').value
+                document.getElementById('res1').innerHTML = phone
+                var email_id = document.getElementById('email').value
+                document.getElementById('res2').innerHTML = email_id
+                var skill = document.getElementById('icon_skill').value
+                if (skill == 1) {
+                    document.getElementById('res3').innerHTML = "Singer"
+                }
+                if (skill == 2) {
+                    document.getElementById('res3').innerHTML = "Dancer"
+                }
+                if (skill == 3) {
+                    document.getElementById('res3').innerHTML = "Musician"
+                }
+                var skillrate = document.getElementById('test5').value
+                document.getElementById('res4').innerHTML = skillrate
+                var mysql = require('mysql');
+
+                var con = mysql.createConnection({
+                    host: "sql12.freesqldatabase.com",
+                    user: "sql12345821",
+                    password: "Please wait"
+                });
+
+                con.connect(function (err) {
+                    if (err) throw err;
+                    console.log("Connected!");
+                    document.getElementById('res5').innerHTML = "Connected!"
+                    
+                });
+            }, false);
+        })
+
+    </script>
+    -->
 </body>
 
 </html>
